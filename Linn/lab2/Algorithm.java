@@ -41,8 +41,6 @@ class Algorithm {
    		return array;
 	}
 
-    public static 
-
 	public static int myContains(int[] A ,int key) {
         
         int arrlen = array.length;

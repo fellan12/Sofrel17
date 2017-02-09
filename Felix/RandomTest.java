@@ -65,24 +65,28 @@ public class RandomTest{
 
 	public void runTest(){
 		Algorithm alg = new Algorithm();
-		Scanner reader = new Scanner(new File("Random-tests-100-20-20.txt"));
-		int numOfTests = reader.nextInt();
-		int arraySize = reader.nextInt();
-		int key, result;
-		for(int i = 0; i < numOfTests; i++){
-			key = reader.nextInt();
-			int[] testArray = new int[arraySize];
-			for(int j = 0; j < arraySize; j++){
-				testArray[j] = reader.nextInt();
-			}
-			result = reader.nextInt();
-			int testRes = alg.myContains(testArray,key);
+		try{
+			Scanner reader = new Scanner(new File("Random-tests-100-20-20.txt"));
+			int numOfTests = reader.nextInt();
+			int arraySize = reader.nextInt();
+			int key, result;
+			for(int i = 0; i < numOfTests; i++){
+				key = reader.nextInt();
+				int[] testArray = new int[arraySize];
+				for(int j = 0; j < arraySize; j++){
+					testArray[j] = reader.nextInt();
+				}
+				result = reader.nextInt();
+				int testRes = alg.myContains(testArray,key);
 
-			if(testRes == result){
-				System.out.println(ANSI_GREEN+"Pass " + i);
-			}else{
-				System.out.println(ANSI_RED+"Fail" + i);
+				if(testRes == result){
+					System.out.println(ANSI_GREEN+"Pass " + i);
+				}else{
+					System.out.println(ANSI_RED+"Fail" + i);
+				}
 			}
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
 		}
 	}
 }
