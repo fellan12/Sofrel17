@@ -41,7 +41,25 @@ class Algorithm {
    		return array;
 	}
 
+    public static 
+
 	public static int myContains(int[] A ,int key) {
+        
+        int arrlen = array.length;
+        int tmp;
+
+        for (int i = 0; i < arrlen; i++) {
+            for (int j = 1; j < arrlen; j++) {
+                if (array[j-1] > array[j]) {
+                    tmp = array[j-1];
+                    array[j-1] = array[j];
+                    array[j] = tmp;
+                }
+            }
+        }
+        return array;
+
+
     	int l = 0;
     	int r = A.length-1;
     	int x = 0;
