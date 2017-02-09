@@ -24,6 +24,7 @@ public class RandomTest{
 		System.out.println("In the file: " + filename);
 		System.out.println();
 		System.out.println("Running test....");
+		runTest();
 	}
 
 	public static void randomGenTests(int numOfTests, int sizeOfArray, int numberRange, String filename){
@@ -63,7 +64,7 @@ public class RandomTest{
 		}
 	}
 
-	public void runTest(){
+	public static void runTest(){
 		Algorithm alg = new Algorithm();
 		try{
 			Scanner reader = new Scanner(new File("Random-tests-100-20-20.txt"));
