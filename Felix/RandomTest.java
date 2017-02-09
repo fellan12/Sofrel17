@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.lang.StringBuilder;
 
 public class RandomTest{
+	static final String ANSI_RED = "\u001B[31m";
+	static final String ANSI_GREEN = "\u001B[32m";
 	static int[][] tests;
 	static int[] keys;
 	static int numOfTests = 100;
@@ -27,10 +29,8 @@ public class RandomTest{
 	public static void randomGenTests(int numOfTests, int sizeOfArray, int numberRange, String filename){
 		try{
 			PrintWriter writer = new PrintWriter(filename, "UTF-8");
-			writer.println(numOfTests);
-			writer.println(1);
-			writer.println(sizeOfArray);
-			writer.println(1);
+			writer.println(numOfTests);		//Number of tests
+			writer.println(sizeOfArray);	//Array size
 
 			Random rand = new Random();
 
@@ -48,13 +48,13 @@ public class RandomTest{
 				int key = rand.nextInt(numberRange);					//Generate the key
 				keys[i] = key;
 
-				boolean keyInArray = testArray.contains(key+ " ");		//Check it the key is in the array
+				int keyInArray = testArray.contains(key+ " ") ? 1 : 0;		//Check it the key is in the array
 
 				for(String x : testArray){								//Convert the Array to string for writing
 					sb.append(x);
 				}
-				System.out.println(key + " [" + sb.toString().trim() + "] " +keyInArray);
-				writer.println(key + " [" + sb.toString().trim() + "] " +keyInArray);	//Write the testcase to file
+				System.out.println(key + " " + sb.toString().trim() + " " +keyInArray);
+				writer.println(key + " " + sb.toString().trim() + " " +keyInArray);	//Write the testcase to file
 			}
 
 			writer.close();
@@ -65,13 +65,23 @@ public class RandomTest{
 
 	public void runTest(){
 		Algorithm alg = new Algorithm();
-		boolean testResult;
-		for(int i = 0; i < tests.length; i++){
-			for(int j = 0; j < tests[0].length; j++){
-				ArrayList<Integer> testArray = new ArrayList<Integer>(Arrays.asList(tests[i]));
-				testResult = alg.myContains(array,keys[i]);
+		Scanner reader = new Scanner(new File("Random-tests-100-20-20.txt"));
+		int numOfTests = reader.nextInt();
+		int arraySize = reader.nextInt();
+		int key, result;
+		for(int i = 0; i < numOfTests; i++){
+			key = reader.nextInt();
+			int[] testArray = new int[arraySize];
+			for(int j = 0; j < arraySize; j++){
+				testArray[j] = reader.nextInt();
+			}
+			result = reader.nextInt();
+			int testRes = alg.myContains(testArray,key);
 
-
+			if(testRes == result){
+				System.out.println(ANSI_GREEN+"Pass " + i);
+			}else{
+				System.out.println(ANSI_RED+"Fail" + i);
 			}
 		}
 	}
