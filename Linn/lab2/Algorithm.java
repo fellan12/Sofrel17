@@ -4,6 +4,7 @@ class Algorithm {
 
 		int[] arr = new int[]{1,3,5,2,6,9,7,2,2,6,6};
     // Fixa och läs in data på rätt format
+        // 
 
 		System.out.print("Before sort: ");
 		for (int elem : arr) {
@@ -40,14 +41,13 @@ class Algorithm {
    		return array;
 	}
 
-	public static boolean myContains(int[] A ,int key) {
+	public static int myContains(int[] A ,int key) {
     	int l = 0;
     	int r = A.length-1;
     	int x = 0;
         
     	do {
         	x = (l + r) / 2;
-        	System.out.println("x: " + x);
         	if (key < A[x]) {
         		r = x-1;
         	}
@@ -58,10 +58,10 @@ class Algorithm {
     	while (!(key == A[x] || l>r));
          
     	if (key == A[x]) {
-        	return true;
+        	return 1;
     	}
     	else {
-        	return false;
+        	return 0;
     	}
 	}
 }
