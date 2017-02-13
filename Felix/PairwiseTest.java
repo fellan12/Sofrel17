@@ -1,30 +1,18 @@
-import java.util.Random;
 import java.util.*;
+import java.util.Arrays;
 import java.io.*;
 import java.io.PrintWriter;
-import java.lang.StringBuilder;
+import java.util.Random;
+import java.util.stream.IntStream;
 
-public class RandomTest{
-	static final String ANSI_RED = "\u001B[31m";
-	static final String ANSI_GREEN = "\u001B[32m";
-	static final String ANSI_RESET = "\u001B[0m";
-	static int[][] tests;
-	static int[] keys;
-	static int numOfTests = 25;
-	static int sizeOfArray = 5;
-	static int numberRange = 5;
-	static String filename = "Random-tests.txt";
+
+public class PairwiseTest{
+	static int[] defaults = {1,2,3,4,5,6,7,8,9,10,11};
+	static int sizeOfArray = defaults.length-1;
+	static String testFilename = "Pairwise-tests.txt";
 	
 	public static void main(String[] args) {
-		tests = new int[numOfTests][sizeOfArray];
-		keys = new int[numOfTests];
-
-		randomGenTests(numOfTests,sizeOfArray,numberRange,filename);
-		System.out.println("Generated " + numOfTests+ " tests");
-		System.out.println("Array size of " +sizeOfArray);
-		System.out.println("Number range of " +numberRange);
-		System.out.println("In the file: " + filename);
-		System.out.println();
+		genPairwiseTest(defaults);
 		System.out.println("Running test....");
 		runTest();
 		runTest1();
@@ -33,41 +21,61 @@ public class RandomTest{
 		runTest4();
 		runTest5();
 		runTest6();
-
 	}
 
-	public static void randomGenTests(int numOfTests, int sizeOfArray, int numberRange, String filename){
+	public static void genPairwiseTest(int[] defaults){
+		HashSet<String> res = new HashSet<String>();
+		res.add(Arrays.toString(defaults));	//0-wise
+
+		for (int i =  0; i < defaults.length; i++) {	//1-wise
+			for (int j = 0;j < defaults.length; j++ ) {		
+				int[] tmp = defaults.clone();
+				tmp[i] = defaults[j];
+				res.add(Arrays.toString(tmp));
+			}
+		}
+
+		for (int i = 0; i < defaults.length; i++) {		//2-wise
+			for (int j = 1; j <= defaults.length; j++) {
+				for (int k = 1; k <= defaults.length; k++ ) {
+					int[] tmp = defaults.clone();
+					tmp[i%3] = j;
+					tmp[(i+1)%3] = k;
+					res.add(Arrays.toString(tmp));
+				}
+			}
+		}
+		
 		try{
+			String filename = "Pairwise-tests.txt";
 			PrintWriter writer = new PrintWriter(filename, "UTF-8");
-			writer.println(numOfTests);		//Number of tests
+			writer.println(res.size());	//Number of tests
 			writer.println(sizeOfArray);	//Array size
 
-			Random rand = new Random();
-
-			
-			for(int i = 0; i < numOfTests; i++){
-				ArrayList<String> testArray = new ArrayList<String>();
-				StringBuilder sb = new StringBuilder();
-
-				for(int j = 0; j < sizeOfArray; j++){					//Generate the test array
-					int randNum = rand.nextInt(numberRange);
-					testArray.add(randNum + " ");		//Add a random number from 0 to numberRange-1
-					tests[i][j] = randNum;
+			for (String x : res) {
+				String[] tmp = x.replace("[","").replace("]","").replace(",","").split(" ");
+				int[] intArray = new int[tmp.length];
+				for (int i = 0; i< tmp.length; i++) {
+					intArray[i] = Integer.parseInt(tmp[i]);
 				}
 
-				int key = rand.nextInt(numberRange);					//Generate the key
-				keys[i] = key;
+				int key = intArray[0];
 
-				int keyInArray = testArray.contains(key+ " ") ? 1 : 0;		//Check it the key is in the array
-
-				for(String x : testArray){								//Convert the Array to string for writing
-					sb.append(x);
+				int[] array = Arrays.copyOfRange(intArray,1,intArray.length);
+				
+				int result = 0;
+				for (int i : array) {
+					if(i == key){
+						result = 1;
+					}
 				}
-				writer.println(key + " " + sb.toString().trim() + " " +keyInArray);	//Write the testcase to file
+
+				String arr = Arrays.toString(array).replace("[","").replace("]","").replace(",","");
+				writer.println(key + " " + arr + " " + result);
 			}
 
 			writer.close();
-		} catch (IOException e) {
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 	}
@@ -77,17 +85,20 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
 			for(int i = 0; i < numOfTests; i++){
 				key = reader.nextInt();
+				//System.out.println("key: " + key);
+
 				int[] testArray = new int[arraySize];
 				for(int j = 0; j < arraySize; j++){
 					testArray[j] = reader.nextInt();
 				}
 				result = reader.nextInt();
+				//System.out.println("result: " + result);
 				try{
 					int testRes = alg.myContains(testArray,key);
 					if(testRes == result){
@@ -114,7 +125,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -151,7 +162,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -188,7 +199,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -225,7 +236,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -262,7 +273,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -299,7 +310,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File(filename));
+			Scanner reader = new Scanner(new File(testFilename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -331,4 +342,10 @@ public class RandomTest{
 		System.out.println("myContains6: Wrong on " + wrongCounter + " out of " + (wrongCounter+rightCounter));
 	}
 
+	public static void print(int[] in){
+		for (int x: in) {
+			System.out.print(x + " ");
+		}
+		System.out.println();
+	}
 }
