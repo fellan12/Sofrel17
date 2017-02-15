@@ -12,6 +12,7 @@ public class PairwiseTest{
 	static final String ANSI_RESET = "\u001B[0m";
 	static int N = 500;
 	static int[] defaults = new int[N+1];
+
 	static int sizeOfArray = defaults.length-1;
 	static String testFilename = "Pairwise-tests.txt";
 	
@@ -35,6 +36,7 @@ public class PairwiseTest{
 		HashSet<String> res = new HashSet<String>();
 		res.add(Arrays.toString(defaults).replace("[","").replace("]","").replace(",",""));	//0-wise
 
+
 		for (int i =  0; i < defaults.length; i++) {	//1-wise
 			for (int j = 0;j < defaults.length; j++ ) {		
 				int[] tmp = defaults.clone();
@@ -45,6 +47,7 @@ public class PairwiseTest{
 
 		
 		for (int i = 0; i < defaults.length/10000; i++) {		//2-wise
+
 			for (int j = 1; j <= defaults.length; j++) {
 				for (int k = 1; k <= defaults.length; k++ ) {
 					int[] tmp = defaults.clone();
@@ -55,8 +58,6 @@ public class PairwiseTest{
 			}
 		}
 		
-		
-
 		try{
 			String filename = "Pairwise-tests.txt";
 			PrintWriter writer = new PrintWriter(filename, "UTF-8");
@@ -65,6 +66,7 @@ public class PairwiseTest{
 
 			for (String x : res) {
 				String[] tmp = x.split(" ");
+
 				int[] intArray = new int[tmp.length];
 				for (int i = 0; i< tmp.length; i++) {
 					intArray[i] = Integer.parseInt(tmp[i]);
@@ -87,6 +89,7 @@ public class PairwiseTest{
 
 			writer.close();
 			System.out.println("File complete");
+
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -344,6 +347,7 @@ public class PairwiseTest{
 					}
 				}catch(Exception a){
 					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+
 					wrongCounter++;
 				}
 			}

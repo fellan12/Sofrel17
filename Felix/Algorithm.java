@@ -86,7 +86,6 @@ class Algorithm {
   }
 
   public static int myContains3(int[] A ,int key) {
-
       int arrlen = A.length;
       int tmp;
       for (int i = 0; i < arrlen; i++) {
