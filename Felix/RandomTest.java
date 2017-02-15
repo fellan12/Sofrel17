@@ -19,7 +19,7 @@ public class RandomTest{
 		tests = new int[numOfTests][sizeOfArray];
 		keys = new int[numOfTests];
 
-		randomGenTests(numOfTests,sizeOfArray,numberRange,filename);
+		//randomGenTests(numOfTests,sizeOfArray,numberRange,filename);
 		System.out.println("Generated " + numOfTests+ " tests");
 		System.out.println("Array size of " +sizeOfArray);
 		System.out.println("Number range of " +numberRange);
@@ -91,14 +91,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}
@@ -128,14 +128,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains1(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}
@@ -165,14 +165,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains2(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}
@@ -202,14 +202,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains3(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}
@@ -239,14 +239,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains4(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}
@@ -276,14 +276,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains5(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}
@@ -313,14 +313,14 @@ public class RandomTest{
 				try{
 					int testRes = alg.myContains6(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}

@@ -7,6 +7,9 @@ import java.util.stream.IntStream;
 
 
 public class PairwiseTest{
+	static final String ANSI_RED = "\u001B[31m";
+	static final String ANSI_GREEN = "\u001B[32m";
+	static final String ANSI_RESET = "\u001B[0m";
 	static int[] defaults = {1,2,3,4,5,6,7,8,9,10,11};
 	static int sizeOfArray = defaults.length-1;
 	static String testFilename = "Pairwise-tests.txt";
@@ -324,14 +327,14 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains6(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
-						//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
+						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
 						wrongCounter++;
 					}
 				}catch(Exception a){
-					//System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
+					System.out.println(ANSI_RED+"Fail " + (i+1) + ": Exception"+ANSI_RESET);
 					wrongCounter++;
 				}
 			}

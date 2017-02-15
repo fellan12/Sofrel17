@@ -51,7 +51,7 @@ class Algorithm {
   //Correct and working
 	public static int myContains(int[] A ,int key) {
     	int[] sorted = sort(A);
-      return binarySearch(A, key);
+      return binarySearch(sorted, key);
 	}
 
   //No sorting
@@ -62,7 +62,7 @@ class Algorithm {
 
   //changed r to A.length/2
   public static int myContains2(int[] A ,int key) {
-      int[] sorted = sort(A);
+      A = sort(A);
       int l = 0;
       int r = A.length/2;
       int x = 0;
@@ -87,7 +87,7 @@ class Algorithm {
 
   //changed initial r to A.length
   public static int myContains3(int[] A ,int key) {
-      int[] sorted = sort(A);
+      A = sort(A);
       int l = 0;
       int r = A.length;      //Should be A.length-1
       int x = 0;
@@ -113,7 +113,7 @@ class Algorithm {
 
   //chaged initial l to 1
   public static int myContains4(int[] A ,int key) {
-      int[] sorted = sort(A);
+      A = sort(A);
       int l = 1;            //Should be 0
       int r = A.length-1;     
       int x = 0;
@@ -140,13 +140,13 @@ class Algorithm {
   //For some reason you add the key to the first element in the array
   public static int myContains5(int[] A ,int key) {
       A[0]=key;
-      int[] sorted = sort(A);
+      A= sort(A);
       return binarySearch(A, key);
   }  
 
   //For some reason you computed the result, but returned the key
   public static int myContains6(int[] A ,int key) {
-      int[] sorted = sort(A);
+      A = sort(A);
       int res = binarySearch(A, key);
       return key;
   }
