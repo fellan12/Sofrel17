@@ -11,14 +11,15 @@ public class RandomTest{
 	static int[][] tests;
 	static int[] keys;
 	static int numOfTests = 100;
-	static int sizeOfArray = 20;
-	static int numberRange = 20;
+	static int sizeOfArray = 100;
+	static int numberRange = sizeOfArray;
+	static String filename = "Random-tests.txt";
+	
 	public static void main(String[] args) {
 		tests = new int[numOfTests][sizeOfArray];
 		keys = new int[numOfTests];
-		String filename = "Random-tests-"+numOfTests+"-"+sizeOfArray+".txt";
 
-		randomGenTests(numOfTests,sizeOfArray,numberRange,filename);
+		//randomGenTests(numOfTests,sizeOfArray,numberRange,filename);
 		System.out.println("Generated " + numOfTests+ " tests");
 		System.out.println("Array size of " +sizeOfArray);
 		System.out.println("Number range of " +numberRange);
@@ -76,7 +77,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -113,7 +114,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -150,7 +151,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -187,7 +188,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -224,7 +225,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -261,7 +262,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
@@ -298,7 +299,7 @@ public class RandomTest{
 		int wrongCounter = 0;
 		int rightCounter = 0;
 		try{
-			Scanner reader = new Scanner(new File("Random-tests-100-20.txt"));
+			Scanner reader = new Scanner(new File(filename));
 			int numOfTests = reader.nextInt();
 			int arraySize = reader.nextInt();
 			int key, result;
