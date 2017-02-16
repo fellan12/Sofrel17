@@ -7,54 +7,57 @@ import java.util.stream.IntStream;
 
 
 public class PairwiseTest{
-	static final String ANSI_RED = "";//"\u001B[31m";
-	static final String ANSI_GREEN = "";//"\u001B[32m";
-	static final String ANSI_RESET = "";//"\u001B[0m";
-	static int N = 5;
-	static int[] defaults = new int[N+1];
+	static final String ANSI_RED = "\u001B[31m";
+	static final String ANSI_GREEN = "\u001B[32m";
+	static final String ANSI_RESET = "\u001B[0m";
+	static int N = 3;
+	static int[] array = new int[N];
+	static int[] defaults = {-1, 0 ,1};
 
-	static int sizeOfArray = defaults.length-1;
+	static int sizeOfArray = N;
 	static String testFilename = "Pairwise-tests.txt";
 	
-	public static void main(String[] args) {
-		for(int i = 1; i <= N+1; i++){
-			defaults[i-1] = i;
-		}		
-		//genPairwiseTest(defaults);
+	public static void main(String[] args) {		
+		genPairwiseTest(defaults);
 		System.out.println("Running test....");
 		System.out.println("Array Size: " + sizeOfArray);
 		runTest();
-		runTest1();
-		runTest2();
-		runTest3();
-		runTest4();
-		runTest5();
-		runTest6();
+		//runTest1();
+		//runTest2();
+		//runTest3();
+		//runTest4();
+		//runTest5();
+		//runTest6();
 	}
 
 	public static void genPairwiseTest(int[] defaults){
 		HashSet<String> res = new HashSet<String>();
-		res.add(Arrays.toString(defaults).replace("[","").replace("]","").replace(",",""));	//0-wise
+		for (int i = 0; i < N; i++) {
+			array[i] = 0;			
+		}
+		res.add(0 + " " + Arrays.toString(array).replace("[","").replace("]","").replace(",",""));	//0-wise
 
-
-		for (int i =  0; i < defaults.length; i++) {	//1-wise
+		for (int i =  0; i < N; i++) {	//1-wise
 			for (int j = 0;j < defaults.length; j++ ) {		
-				int[] tmp = defaults.clone();
+				int[] tmp = array.clone();
 				tmp[i] = defaults[j];
-				res.add(Arrays.toString(tmp).replace("[","").replace("]","").replace(",",""));
+				res.add(defaults[i%3] + " " +(Arrays.toString(tmp).replace("[","").replace("]","").replace(",","")));
+			}
+		}
+	
+		for (int i = 0; i < N; i++) {		//2-wise
+			for (int j = i; j < N; j++) {
+				for (int k = i+1; k < N; k++ ) {
+					int[] tmp = array.clone();
+					tmp[i] = defaults[i%defaults.length];
+					tmp[k] = defaults[k%defaults.length];
+					res.add(defaults[i%3] + " " + Arrays.toString(tmp).replace("[","").replace("]","").replace(",",""));
+				}
 			}
 		}
 
-		
-		for (int i = 0; i < defaults.length/100; i++) {		//2-wise
-			for (int j = 1; j <= defaults.length/100; j++) {
-				for (int k = 1; k <= defaults.length/100; k++ ) {
-					int[] tmp = defaults.clone();
-					tmp[i%3] = j;
-					tmp[(i+1)%3] = k;
-					res.add(Arrays.toString(tmp).replace("[","").replace("]","").replace(",",""));
-				}
-			}
+		for (String x : res) {
+			System.out.println(x);
 		}
 		
 		try{
@@ -113,7 +116,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains(testArray,key);
 					if(testRes == result){
-						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
@@ -150,7 +153,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains1(testArray,key);
 					if(testRes == result){
-						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						////System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
@@ -187,7 +190,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains2(testArray,key);
 					if(testRes == result){
-						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
@@ -224,7 +227,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains3(testArray,key);
 					if(testRes == result){
-						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
@@ -261,7 +264,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains4(testArray,key);
 					if(testRes == result){
-						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
@@ -298,7 +301,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains5(testArray,key);
 					if(testRes == result){
-						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
@@ -335,7 +338,7 @@ public class PairwiseTest{
 				try{
 					int testRes = alg.myContains6(testArray,key);
 					if(testRes == result){
-						System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
+						//System.out.println(ANSI_GREEN+"Pass " + (i+1) +ANSI_RESET);
 						rightCounter++;
 					}else{
 						System.out.println(ANSI_RED+"Fail " + (i+1) + ": Wrong answer"+ANSI_RESET);
